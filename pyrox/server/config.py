@@ -45,7 +45,7 @@ def _host_tuple(host_str):
     elif len(parts) == 2:
         return (parts[0], int(parts[1]))
     else:
-        raise ConfigurationError('Malformed host: {}'.format(host_str))
+        raise ConfigurationError('Malformed host: {0}'.format(host_str))
 
 
 def load_pyrox_config(location):

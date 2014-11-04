@@ -31,7 +31,7 @@ def module_files(module_name, *extensions):
     found = list()
     filename_base = module_name.replace('.', '/')
     for extension in extensions:
-        filename = '{}.{}'.format(filename_base, extension)
+        filename = '{0}.{1}'.format(filename_base, extension)
         if os.path.isfile(filename):
             found.append(filename)
     return found

@@ -31,7 +31,7 @@ Default return object on error. This should be configurable.
 _BAD_GATEWAY_RESP = HttpResponse()
 _BAD_GATEWAY_RESP.version = b'1.1'
 _BAD_GATEWAY_RESP.status = '502 Bad Gateway'
-_BAD_GATEWAY_RESP.header('Server').values.append('pyrox/{}'.format(VERSION))
+_BAD_GATEWAY_RESP.header('Server').values.append('pyrox/{0}'.format(VERSION))
 _BAD_GATEWAY_RESP.header('Content-Length').values.append('0')
 
 """
@@ -41,7 +41,7 @@ be configurable.
 _UPSTREAM_UNAVAILABLE = HttpResponse()
 _UPSTREAM_UNAVAILABLE.version = b'1.1'
 _UPSTREAM_UNAVAILABLE.status = '503 Service Unavailable'
-_UPSTREAM_UNAVAILABLE.header('Server').values.append('pyrox/{}'.format(VERSION))
+_UPSTREAM_UNAVAILABLE.header('Server').values.append('pyrox/{0}'.format(VERSION))
 _UPSTREAM_UNAVAILABLE.header('Content-Length').values.append('0')
 
 
@@ -86,7 +86,7 @@ class ProxyHandler(ParserDelegate):
         self._intercepted = False
 
     def on_http_version(self, major, minor):
-        self._http_msg.version = '{}.{}'.format(major, minor)
+        self._http_msg.version = '{0}.{1}'.format(major, minor)
 
     def on_header_field(self, field):
         self._last_header_field = field
@@ -313,7 +313,7 @@ class ConnectionTracker(object):
         elif protocol == PROTOCOL_HTTPS:
             live_stream = SSLSocketIOHandler(us_sock)
         else:
-            raise Exception('Unknown protocol: {}.'.format(protocol))
+            raise Exception('Unknown protocol: {0}.'.format(protocol))
 
         # Store the stream reference for later use
         self._streams[target] = live_stream
@@ -388,7 +388,7 @@ class ProxyConnection(object):
 
         # Update the request to proxy upstream and store it
         request.replace_header('host').values.append(
-            '{}:{}'.format(upstream_target[0], upstream_target[1]))
+            '{0}:{1}'.format(upstream_target[0], upstream_target[1]))
         self._request = request
 
         try:
@@ -424,7 +424,7 @@ class ProxyConnection(object):
         self._downstream_parser = None
 
     def _on_downstream_error(self, error):
-        _LOG.error('Downstream error: {}'.format(error))
+        _LOG.error('Downstream error: {0}'.format(error))
         if not self._downstream.closed():
             self._downstream.close()
 

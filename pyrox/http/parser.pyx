@@ -158,7 +158,7 @@ cdef class HttpEventParser(object):
             if isinstance(data, list) or isinstance(data, bytearray):
                 strval = str(data)
             else:
-                raise Exception('Can not coerce type: {} into str.'.format(
+                raise Exception('Can not coerce type: {0} into str.'.format(
                     type(data)))
 
         self._execute(strval, len(data))
@@ -172,7 +172,7 @@ cdef class HttpEventParser(object):
             retval = http_parser_exec(
                 self._parser, &self._settings, data, length)
             if retval:
-                raise Exception('Failed with errno: {}'.format(retval))
+                raise Exception('Failed with errno: {0}'.format(retval))
         except Exception as ex:
             raise
 

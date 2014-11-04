@@ -170,7 +170,7 @@ class FileDescriptorChannel(Channel):
         Alias for removing the error interest from the event handler.
         """
         if _SHOULD_LOG_DEBUG_OUTPUT:
-            gen_log.debug('Halting error events for stream(fd:{})'.format(
+            gen_log.debug('Halting error events for stream(fd:{0})'.format(
                 self.fileno))
         self._drop_event_interest(ERROR)
 
@@ -179,7 +179,7 @@ class FileDescriptorChannel(Channel):
         Alias for removing the read interest from the event handler.
         """
         if _SHOULD_LOG_DEBUG_OUTPUT:
-            gen_log.debug('Halting read events for stream(fd:{})'.format(
+            gen_log.debug('Halting read events for stream(fd:{0})'.format(
                 self.fileno))
         self._drop_event_interest(READ)
 
@@ -188,7 +188,7 @@ class FileDescriptorChannel(Channel):
         Alias for removing the send interest from the event handler.
         """
         if _SHOULD_LOG_DEBUG_OUTPUT:
-            gen_log.debug('Halting write events for stream(fd:{})'.format(
+            gen_log.debug('Halting write events for stream(fd:{0})'.format(
                 self.fileno))
         self._drop_event_interest(WRITE)
 
@@ -197,7 +197,7 @@ class FileDescriptorChannel(Channel):
         Alias for adding the error interest from the event handler.
         """
         if _SHOULD_LOG_DEBUG_OUTPUT:
-            gen_log.debug('Resuming error events for stream(fd:{})'.format(
+            gen_log.debug('Resuming error events for stream(fd:{0})'.format(
                 self.fileno))
         self._add_event_interest(ERROR)
 
@@ -206,7 +206,7 @@ class FileDescriptorChannel(Channel):
         Alias for adding the read interest to the event handler.
         """
         if _SHOULD_LOG_DEBUG_OUTPUT:
-            gen_log.debug('Resuming read events for stream(fd:{})'.format(
+            gen_log.debug('Resuming read events for stream(fd:{0})'.format(
                 self.fileno))
         self._add_event_interest(READ)
 
@@ -215,7 +215,7 @@ class FileDescriptorChannel(Channel):
         Alias for adding the send interest to the event handler.
         """
         if _SHOULD_LOG_DEBUG_OUTPUT:
-            gen_log.debug('Resuming write events for stream(fd:{})'.format(
+            gen_log.debug('Resuming write events for stream(fd:{0})'.format(
                 self.fileno))
         self._add_event_interest(WRITE)
 
@@ -322,7 +322,7 @@ class SocketChannel(FileDescriptorChannel):
         self._socket.getsockopt(socket.SOL_SOCKET, socket.SO_ERROR)
 
     def __str__(self):
-        return '(fd:{}) SocketChannel(addr:{})'.format(
+        return '(fd:{0}) SocketChannel(addr:{0})'.format(
             self.fileno, self._socket.getsockname())
 
 
@@ -380,7 +380,7 @@ class ManagedChannel(object):
         elif hasattr(self.actual_channel, name):
             return getattr(self.actual_channel, name)
 
-        return AttributeError('No attribute named: {}.'.format(name))
+        return AttributeError('No attribute named: {0}.'.format(name))
 
 
 class ChannelEventRouter(object):

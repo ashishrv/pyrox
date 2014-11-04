@@ -52,7 +52,7 @@ cdef class CyclicBuffer(object):
             if isinstance(data, list) or isinstance(data, bytearray):
                 strval = str(data)
             else:
-                raise Exception('Can not coerce type: {} into str.'.format(
+                raise Exception('Can not coerce type: {0} into str.'.format(
                     type(data)))
 
         cbuf_put(self._buffer, strval, len(strval))

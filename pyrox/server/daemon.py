@@ -51,10 +51,10 @@ def _resolve_filter_classes(cls_list):
     for cdef in cls_list:
         # If there's a complex module path, process the ends of it
         if '.' not in cdef:
-            raise ImportError('Bad filter class: {}'.format(cdef))
+            raise ImportError('Bad filter class: {0}'.format(cdef))
 
         module = pynsive.import_module(cdef[:cdef.rfind('.')])
-        _LOG.debug('Searching for filter {} in module {}'.format(cdef, module))
+        _LOG.debug('Searching for filter {0} in module {1}'.format(cdef, module))
 
         try:
             cls = getattr(module, cdef[cdef.rfind('.') + 1:])
@@ -68,10 +68,10 @@ def _resolve_filter_classes(cls_list):
                 raise TypeError(
                     'Type of a filter must be a function or a class')
 
-            _LOG.debug('Found definition for {} as {}'.format(cdef, cls))
+            _LOG.debug('Found definition for {0} as {1}'.format(cdef, cls))
         except AttributeError as ae:
             _LOG.exception(ae)
-            raise ImportError('Unable to import: {}'.format(cdef))
+            raise ImportError('Unable to import: {0}'.format(cdef))
     return filter_cls_list
 
 
@@ -152,7 +152,7 @@ def start_proxy(sockets, config):
         ssl_options['certfile'] = cert_file
         ssl_options['keyfile'] = key_file
 
-        _LOG.debug('SSL enabled: {}'.format(ssl_options))
+        _LOG.debug('SSL enabled: {0}'.format(ssl_options))
 
     # Create proxy server ref
     http_proxy = TornadoHttpProxy(
@@ -174,7 +174,7 @@ def start_pyrox(cfg=None, cfg_location=None):
 
     # Log some important things
     if config.routing.upstream_hosts is not None:
-        _LOG.info('Upstream targets are: {}'.format(
+        _LOG.info('Upstream targets are: {0}'.format(
             [dst for dst in config.routing.upstream_hosts]))
 
     # Set bind host
@@ -220,7 +220,7 @@ you run Pyrox in production with this feature enabled.
     for i in range(num_processes):
         pid = os.fork()
         if pid == 0:
-            _LOG.info('Starting process {}'.format(i))
+            _LOG.info('Starting process {0}'.format(i))
             start_proxy(sockets, config)
             sys.exit(0)
         else:
@@ -241,6 +241,6 @@ you run Pyrox in production with this feature enabled.
             _LOG.exception(ex)
             continue
 
-        _LOG.info('Child process {} exited with status {}'.format(
+        _LOG.info('Child process {0} exited with status {1}'.format(
             pid, status))
         _active_children_pids.remove(pid)

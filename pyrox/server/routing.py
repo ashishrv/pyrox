@@ -38,7 +38,7 @@ def parse_route_url(url):
             port = _PROTOCOL_DEFAULT_PORTS.get(protocol)
 
     if protocol is None:
-        raise InvalidRouteError('Unsupported protocol "{}" in URL.'.format(
+        raise InvalidRouteError('Unsupported protocol "{0}" in URL.'.format(
             parsed_url.scheme))
 
     if host is None:

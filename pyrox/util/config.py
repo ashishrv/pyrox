@@ -14,7 +14,7 @@ def _find_cfg_classes(module):
 def load_config(cfg_module_name, location, defaults=None):
     if not os.path.isfile(location):
         raise ConfigurationError(
-            'Unable to locate configuration file: {}'.format(location))
+            'Unable to locate configuration file: {0}'.format(location))
 
     cfg = ConfigParser()
     cfg.read(location)

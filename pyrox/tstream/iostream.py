@@ -147,7 +147,7 @@ class FileDescriptorHandle(object):
         Alias for removing the read interest from the event handler.
         """
         if _SHOULD_LOG_DEBUG_OUTPUT:
-            gen_log.debug('Halting read events for stream(fd:{})'.format(
+            gen_log.debug('Halting read events for stream(fd:{0})'.format(
                 self.fd))
         self._drop_event_interest(self._io_loop.READ)
 
@@ -156,7 +156,7 @@ class FileDescriptorHandle(object):
         Alias for removing the send interest from the event handler.
         """
         if _SHOULD_LOG_DEBUG_OUTPUT:
-            gen_log.debug('Halting write events for stream(fd:{})'.format(
+            gen_log.debug('Halting write events for stream(fd:{0})'.format(
                 self.fd))
         self._drop_event_interest(self._io_loop.WRITE)
 
@@ -165,7 +165,7 @@ class FileDescriptorHandle(object):
         Alias for adding the read interest to the event handler.
         """
         if _SHOULD_LOG_DEBUG_OUTPUT:
-            gen_log.debug('Resuming recv events for stream(fd:{})'.format(
+            gen_log.debug('Resuming recv events for stream(fd:{0})'.format(
                 self.fd))
         self._add_event_interest(self._io_loop.READ)
 
@@ -174,7 +174,7 @@ class FileDescriptorHandle(object):
         Alias for adding the send interest to the event handler.
         """
         if _SHOULD_LOG_DEBUG_OUTPUT:
-            gen_log.debug('Resuming send events for stream(fd:{})'.format(
+            gen_log.debug('Resuming send events for stream(fd:{0})'.format(
                 self.fd))
         self._add_event_interest(self._io_loop.WRITE)
 
@@ -303,7 +303,7 @@ class SocketIOHandler(IOHandler):
     def _close(self):
         """Close this stream."""
         if self._socket is not None:
-            gen_log.debug('Closing stream(fd: {})'.format(self.handle.fd))
+            gen_log.debug('Closing stream(fd: {0})'.format(self.handle.fd))
 
             self.handle.remove_handler()
 
@@ -324,7 +324,7 @@ class SocketIOHandler(IOHandler):
         return self._socket.send(send_buffer)
 
     def _handle_events(self, fd, events):
-        #gen_log.debug('Handle event for stream(fd: {})'.format(self.handle.fd))
+        #gen_log.debug('Handle event for stream(fd: {0})'.format(self.handle.fd))
 
         if self._socket is None:
             gen_log.warning("Got events for closed stream %d", fd)

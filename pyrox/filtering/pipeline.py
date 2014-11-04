@@ -58,7 +58,7 @@ class FilterAction(object):
         return self.kind == ROUTE
 
     def __str__(self):
-        return 'Action({}) - Is breaking flow: {}'.format(
+        return 'Action({0}) - Is breaking flow: {1}'.format(
             _ACTION_NAMES[self.kind], self.breaks_pipeline())
 
 
@@ -228,23 +228,23 @@ class HttpFilterPipeline(object):
                 continue
 
             finst = method[1]
-            _LOG.debug('Checking function instance {} for decorators'.format(finst))
+            _LOG.debug('Checking function instance {0} for decorators'.format(finst))
 
             # Assume that if an attribute exists then it is decorated
             if hasattr(finst, '_handles_request_head'):
-                _LOG.debug('Function instance {} handles request head'.format(finst))
+                _LOG.debug('Function instance {0} handles request head'.format(finst))
                 self._req_head_chain.append((http_filter, finst))
 
             if hasattr(finst, '_handles_request_body'):
-                _LOG.debug('Function instance {} handles request body'.format(finst))
+                _LOG.debug('Function instance {0} handles request body'.format(finst))
                 self._req_body_chain.append((http_filter, finst))
 
             if hasattr(finst, '_handles_response_head'):
-                _LOG.debug('Function instance {} handles response head'.format(finst))
+                _LOG.debug('Function instance {0} handles response head'.format(finst))
                 self._resp_head_chain.append((http_filter, finst))
 
             if hasattr(finst, '_handles_response_body'):
-                _LOG.debug('Function instance {} handles response body'.format(finst))
+                _LOG.debug('Function instance {0} handles response body'.format(finst))
                 self._resp_body_chain.append((http_filter, finst))
 
     def _on_head(self, chain, head):

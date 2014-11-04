@@ -25,7 +25,7 @@ args_parser.add_argument(
     nargs='?',
     dest='plugin_paths',
     default=None,
-    help=('"{}" character separated string of paths to '
+    help=('"{0}" character separated string of paths to '
           'import from when loading plugins.'.format(os.sep)))
 args_parser.add_argument(
     'start',
